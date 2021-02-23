@@ -1,13 +1,13 @@
-package com.coursera.coursera;
+package com.course;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CourseraApplication {
+public class EurekaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CourseraApplication.class, args);
+		SpringApplication.run(EurekaApplication.class, args);
 	}
 
 }
