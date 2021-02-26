@@ -1,4 +1,4 @@
-package com.course.system.domain;
+package com.coursera.server.domain;
 
 public class Test {
     private String id;

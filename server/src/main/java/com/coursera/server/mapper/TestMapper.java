@@ -1,6 +1,7 @@
-package com.course.system.mapper;
+package com.coursera.server.mapper;
 
-import com.course.system.domain.Test;
+import com.coursera.server.domain.Test;
+
 import java.util.List;
 
 public interface TestMapper {

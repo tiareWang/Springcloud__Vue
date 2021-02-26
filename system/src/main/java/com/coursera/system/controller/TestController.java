@@ -1,7 +1,7 @@
-package com.course.system.controller;
+package com.coursera.system.controller;
 
-import com.course.system.domain.Test;
-import com.course.system.service.TestService;
+import com.coursera.server.domain.Test;
+import com.coursera.server.service.TestService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
