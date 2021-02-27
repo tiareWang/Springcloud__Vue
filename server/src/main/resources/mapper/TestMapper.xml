@@ -161,9 +161,4 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
-
-    <select id="list" resultType="com.coursera.server.domain.Test">
-        select `id`, `name` from courseimooc.test
-    </select>
-
 </mapper>
