@@ -1,6 +1,7 @@
 package com.coursera.server.service;
 
 import com.coursera.server.domain.Test;
+import com.coursera.server.domain.TestExample;
 import com.coursera.server.mapper.TestMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,10 @@ public class TestService {
     private TestMapper testMapper;
 
     public List<Test> list(){
-        return testMapper.list();
+        TestExample testExample = new TestExample();
+        testExample.createCriteria().andIdEqualTo("1");
+        testExample.setOrderByClause("id desc");
+        return testMapper.selectByExample(testExample);
 
     }
 }
