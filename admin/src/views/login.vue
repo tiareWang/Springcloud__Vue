@@ -8,7 +8,7 @@
               <h1>
                 <i class="ace-icon fa fa-leaf green"></i>
                 <span class="">Application</span>
-<!--                <span class="white" id="id-text2">Application</span>-->
+                <!--                <span class="white" id="id-text2">Application</span>-->
               </h1>
               <h4 class="blue" id="id-company-text">&copy; Company Name</h4>
             </div>
@@ -242,6 +242,6 @@
 $('body').attr('class', 'login-layout light-login');
 
 export default {
-  name: 'App',
+  name: 'login',
 }
 </script>
