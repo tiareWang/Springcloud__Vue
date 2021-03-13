@@ -1,6 +1,7 @@
-package com.coursera.business.controller;
+package com.coursera.business.controller.admin;
 
 import com.coursera.server.domain.Chapter;
+import com.coursera.server.dto.ChapterDto;
 import com.coursera.server.service.ChapterService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
-//@RequestMapping("/system")   //这样之后的每个地址都加了"/system"
+@RequestMapping("/admin")
 @RestController
 public class ChapterController {
 
@@ -16,7 +17,7 @@ public class ChapterController {
     private ChapterService chapterService;
 
     @RequestMapping("/chapter")   //访问chapter地址
-    public List<Chapter> chapter(){
+    public List<ChapterDto> chapter(){
         return chapterService.list();
     }
 }
