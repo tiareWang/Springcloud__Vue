@@ -355,7 +355,7 @@
 
         <ul class="nav nav-list">
           <li class="" id="welcome-sidebar">
-            <router-link to="/admin/welcome">
+            <router-link to="/welcome">
               <i class="menu-icon fa fa-tachometer"></i>
               <span class="menu-text"> 欢迎 </span>
             </router-link>
@@ -406,7 +406,7 @@
 
             <ul class="submenu">
               <li class="active" id="business-chapter-sidebar">
-                <router-link to="/admin/business/chapter">
+                <router-link to="/business/chapter">
                   <i class="menu-icon fa fa-caret-right"></i>
                   大章管理
                 </router-link>
@@ -495,7 +495,7 @@
         $("#" + id).addClass("active");
 
         //如果有父菜单，父菜单的兄弟菜单去掉open active，父菜单增加open active
-        let parentLi = $("#" + id).parents("li");  //sibilings:获取兄弟节点
+        let parentLi = $("#" + id).parents("li");  //siblings:获取兄弟节点
         if(parentLi) {
           parentLi.siblings().removeClass("open active");
           parentLi.addClass("open active");
