@@ -28,6 +28,13 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!-- mybatis分页插件pagehelper -->
+        <!-- mybatis-generator生成的代码是不带分页功能的，使用pagehelper插件来扩展分页功能-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+        </dependency>
+
         <!-- 热部署DevTools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,5 +1,6 @@
 package com.coursera.server.service;
 
+import com.github.pagehelper.PageHelper;
 import com.coursera.server.domain.Chapter;
 import com.coursera.server.domain.ChapterExample;
 import com.coursera.server.dto.ChapterDto;
@@ -18,6 +19,7 @@ public class ChapterService {
     private ChapterMapper chapterMapper;
 
     public List<ChapterDto> list(){
+        PageHelper.startPage(1,1); //分页功能
         ChapterExample chapterExample = new ChapterExample();
 //        chapterExample.createCriteria().andIdEqualTo("1");
 //        chapterExample.setOrderByClause("id desc");
