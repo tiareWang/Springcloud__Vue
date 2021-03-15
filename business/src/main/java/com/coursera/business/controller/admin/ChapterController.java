@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
-@RequestMapping("/admin")
+@RequestMapping("/admin/chapter")
 @RestController
 public class ChapterController {
 
     @Resource
     private ChapterService chapterService;
 
-    @RequestMapping("/chapter")   //访问chapter地址
-    public List<ChapterDto> chapter(){
+    @RequestMapping("/list")   //访问chapter地址
+    public List<ChapterDto> list(){
         return chapterService.list();
     }
 }
