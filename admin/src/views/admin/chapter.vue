@@ -95,6 +95,9 @@
       // this.$parent.activeSidebar("business-chapter-sidebar");
     },
     methods: {
+      /**
+       * 点击【新增】
+       */
       add() {
         let _this = this;
         _this.chapter = {};
@@ -102,6 +105,9 @@
       //  $(".modal").modal({backdrop:"static"});禁止点空白地方关闭，某些场景会用到这个功能
       },
 
+      /**
+       * 点击【编辑】
+       */
       edit(chapter) {
         let _this = this;
         // _this.chapter = chapter;  //这样会让只在对话框修改就更改到列表上，取消键无用
@@ -109,6 +115,9 @@
         $("#form-modal").modal("show");
       },
 
+      /**
+       * 列表查询
+       */
       list(page) {
         let _this = this;
         Loading.show();
@@ -124,6 +133,9 @@
         })
       },
 
+      /**
+       * 点击【保存】
+       */
       save() {
         let _this = this;
 
@@ -148,6 +160,9 @@
         })
       },
 
+      /**
+       * 点击【删除】
+       */
       del(id) {
         let _this = this;
         Confirm.show("删除大章后不可恢复，确认删除？", function () {
@@ -162,28 +177,6 @@
             }
           })
         });
-        // Swal.fire({
-        //   title: '确认删除？',
-        //   text: "删除后不可恢复，确认删除？",
-        //   icon: 'warning',
-        //   showCancelButton: true,
-        //   confirmButtonColor: '#3085d6',
-        //   cancelButtonColor: '#d33',
-        //   confirmButtonText: '确认!'
-        // }).then((result) => {
-        //   if (result.value) {
-        //     Loading.show();
-        //     _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id, _this.chapter).then((response) => {
-        //       Loading.hide();
-        //       console.log("删除大章列表结果：", response);
-        //       let responseDto = response.data;
-        //       if (responseDto.success) {
-        //         _this.list(1);
-        //         Toast.success("删除成功");
-        //       }
-        //     })
-        //   }
-        // })
       }
     }
   }
