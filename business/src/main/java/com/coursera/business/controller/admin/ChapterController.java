@@ -3,6 +3,7 @@ package com.coursera.business.controller.admin;
 import com.coursera.server.domain.Chapter;
 import com.coursera.server.dto.ChapterDto;
 import com.coursera.server.dto.PageDto;
+import com.coursera.server.dto.ResponseDto;
 import com.coursera.server.service.ChapterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,16 +24,20 @@ public class ChapterController {
     private ChapterService chapterService;
 
     @RequestMapping("/list")   //访问chapter地址
-    public PageDto list(@RequestBody PageDto pageDto) {
+    public ResponseDto list(@RequestBody PageDto pageDto) {
         LOG.info("pageDto: {}", pageDto);
+        ResponseDto responseDto = new ResponseDto();
         chapterService.list(pageDto);
-        return pageDto;
+        responseDto.setContent(pageDto);
+        return responseDto;
     }
 
     @RequestMapping("/save")   //访问chapter地址
-    public ChapterDto save(@RequestBody ChapterDto chapterDto) {
+    public ResponseDto save(@RequestBody ChapterDto chapterDto) {
         LOG.info("chapterDto: {}", chapterDto);
+        ResponseDto responseDto = new ResponseDto();
         chapterService.save(chapterDto);
-        return chapterDto;
+        responseDto.setContent(chapterDto);
+        return responseDto;
     }
 }
