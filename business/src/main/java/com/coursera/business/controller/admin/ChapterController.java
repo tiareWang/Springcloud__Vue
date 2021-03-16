@@ -1,6 +1,8 @@
 package com.coursera.business.controller.admin;
 
 import com.coursera.server.domain.Chapter;
+import com.coursera.server.util.ValidatorUtil;
+import com.coursera.server.exception.ValidatorException;
 import com.coursera.server.dto.ChapterDto;
 import com.coursera.server.dto.PageDto;
 import com.coursera.server.dto.ResponseDto;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @RequestMapping("/admin/chapter")
@@ -33,6 +36,13 @@ public class ChapterController {
     @PostMapping("/save")   //访问chapter地址
     public ResponseDto save(@RequestBody ChapterDto chapterDto) {
         LOG.info("chapterDto: {}", chapterDto);
+
+        //保存校验
+        ValidatorUtil.require(chapterDto.getName(), "名称");
+        ValidatorUtil.require(chapterDto.getCourseId(), "课程ID");
+        ValidatorUtil.length(chapterDto.getCourseId(), "课程ID", 1, 8);
+
+
         ResponseDto responseDto = new ResponseDto();
         chapterService.save(chapterDto);
         responseDto.setContent(chapterDto);
