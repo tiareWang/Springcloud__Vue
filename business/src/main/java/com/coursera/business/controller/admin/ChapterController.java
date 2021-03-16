@@ -23,9 +23,16 @@ public class ChapterController {
     private ChapterService chapterService;
 
     @RequestMapping("/list")   //访问chapter地址
-    public PageDto list(@RequestBody PageDto pageDto){
+    public PageDto list(@RequestBody PageDto pageDto) {
         LOG.info("pageDto: {}", pageDto);
         chapterService.list(pageDto);
         return pageDto;
+    }
+
+    @RequestMapping("/save")   //访问chapter地址
+    public ChapterDto save(@RequestBody ChapterDto chapterDto) {
+        LOG.info("chapterDto: {}", chapterDto);
+        chapterService.save(chapterDto);
+        return chapterDto;
     }
 }

@@ -100,20 +100,20 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-10">
-                  <input class="form-control" placeholder="名称">
+                  <input v-model="chapter.name" class="form-control" placeholder="名称">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">课程ID</label>
                 <div class="col-sm-10">
-                  <input class="form-control" placeholder="课程ID">
+                  <input v-model="chapter.courseId" class="form-control" placeholder="课程ID">
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary">保存</button>
+            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -128,9 +128,9 @@
     name: 'chapter',
     data: function() {
       return {
-        chapters :[]
+        chapter: {},  //chapter变量用于绑定form表单的数据，save方法
+        chapters: []
       }
-
     },
     mounted: function() {
       let _this = this;
@@ -145,6 +145,7 @@
         $(".modal").modal("show");
       //  $(".modal").modal({backdrop:"static"});禁止点空白地方关闭，某些场景会用到这个功能
       },
+
       list(page) {
         let _this = this;
         _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/list', {
@@ -155,9 +156,14 @@
           _this.chapters = response.data.list;
           _this.$refs.pagination.render(page, response.data.total);
         })
+      },
 
+      save(page) {
+        let _this = this;
+        _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save', _this.chapter).then((response) => {
+          console.log("保存大章列表结果：", response);
+        })
       }
-
     }
   }
 </script>

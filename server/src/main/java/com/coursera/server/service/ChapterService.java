@@ -1,5 +1,6 @@
 package com.coursera.server.service;
 
+import com.coursera.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.coursera.server.domain.Chapter;
 import com.coursera.server.domain.ChapterExample;
@@ -35,5 +36,12 @@ public class ChapterService {
             chapterDtoList.add(chapterDto);
         }
         pageDto.setList(chapterDtoList);
+    }
+
+    public void save(ChapterDto chapterDto){
+        chapterDto.setId(UuidUtil.getShortUuid());
+        Chapter chapter = new Chapter();
+        BeanUtils.copyProperties(chapterDto, chapter);
+        chapterMapper.insert(chapter);
     }
 }
