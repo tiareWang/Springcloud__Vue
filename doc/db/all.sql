@@ -7,7 +7,16 @@ create table `chapter` (
 ) engine=innodb default charset=utf8mb4 comment='大章';
 
 insert into `chapter` (id, course_id, name) values ('00000000', '00000000', '测试大章一');
-insert into `chapter` (id, course_id, name) values ('00000001', '00000001', '测试大章二');
+insert into `chapter` (id, course_id, name) values ('00000001', '00000000', '测试大章二');
+insert into `chapter` (id, course_id, name) values ('00000002', '00000000', '测试大章三');
+insert into `chapter` (id, course_id, name) values ('00000003', '00000000', '测试大章四');
+insert into `chapter` (id, course_id, name) values ('00000004', '00000000', '测试大章五');
+insert into `chapter` (id, course_id, name) values ('00000005', '00000000', '测试大章六');
+insert into `chapter` (id, course_id, name) values ('00000006', '00000000', '测试大章七');
+insert into `chapter` (id, course_id, name) values ('00000007', '00000000', '测试大章八');
+insert into `chapter` (id, course_id, name) values ('00000008', '00000000', '测试大章九');
+insert into `chapter` (id, course_id, name) values ('00000009', '00000000', '测试大章十');
+insert into `chapter` (id, course_id, name) values ('00000010', '00000000', '测试大章十一');
 # ------------ 测试
 drop table if exists `test`;
 create table `test` (
