@@ -1,5 +1,6 @@
 package com.coursera.server.service;
 
+import com.coursera.server.util.CopyUtil;
 import com.coursera.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.coursera.server.domain.Chapter;
@@ -7,6 +8,7 @@ import com.coursera.server.domain.ChapterExample;
 import com.coursera.server.dto.ChapterDto;
 import com.coursera.server.dto.PageDto;
 import com.coursera.server.mapper.ChapterMapper;
+import com.coursera.server.util.CopyUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -29,19 +31,21 @@ public class ChapterService {
         List<Chapter> chapterList = chapterMapper.selectByExample(chapterExample);
         PageInfo<Chapter> pageInfo = new PageInfo<>(chapterList);
         pageDto.setTotal(pageInfo.getTotal());
-        List<ChapterDto> chapterDtoList = new ArrayList<>();
-        for (Chapter chapter : chapterList) {
-            ChapterDto chapterDto = new ChapterDto();
-            BeanUtils.copyProperties(chapter, chapterDto);
-            chapterDtoList.add(chapterDto);
-        }
+//        List<ChapterDto> chapterDtoList = new ArrayList<>();
+//        for (Chapter chapter : chapterList) {
+//            ChapterDto chapterDto = new ChapterDto();
+//            BeanUtils.copyProperties(chapter, chapterDto);
+//            chapterDtoList.add(chapterDto);
+//        }
+        List<ChapterDto> chapterDtoList = CopyUtil.copyList(chapterList, ChapterDto.class);
         pageDto.setList(chapterDtoList);
     }
 
     public void save(ChapterDto chapterDto){
         chapterDto.setId(UuidUtil.getShortUuid());
-        Chapter chapter = new Chapter();
-        BeanUtils.copyProperties(chapterDto, chapter);
+//        Chapter chapter = new Chapter();
+//        BeanUtils.copyProperties(chapterDto, chapter);
+        Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
         chapterMapper.insert(chapter);
     }
 }
