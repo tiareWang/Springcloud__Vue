@@ -20,6 +20,7 @@ import java.util.List;
 public class ChapterController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChapterController.class);
+    public static final String BUSINESS_NAME = "大章";
 
     @Resource
     private ChapterService chapterService;
@@ -38,6 +39,7 @@ public class ChapterController {
         LOG.info("chapterDto: {}", chapterDto);
 
         //保存校验
+//前后端分离的项目，后端接口需要增加和前端一样的校验，防止被绕过前端界面，利用第三方工具如postman，直接访问后端接口
         ValidatorUtil.require(chapterDto.getName(), "名称");
         ValidatorUtil.require(chapterDto.getCourseId(), "课程ID");
         ValidatorUtil.length(chapterDto.getCourseId(), "课程ID", 1, 8);
