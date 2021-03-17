@@ -1,4 +1,4 @@
-package com.coursera.business.controller.admin;
+package com.coursera.${module}.controller.admin;
 
 import com.coursera.server.domain.${Domain};
 import com.coursera.server.util.ValidatorUtil;
@@ -20,7 +20,7 @@ import java.util.List;
 public class ${Domain}Controller {
 
     private static final Logger LOG = LoggerFactory.getLogger(${Domain}Controller.class);
-    public static final String BUSINESS_NAME = "大章";
+    public static final String BUSINESS_NAME = "${tableNameCn}";
 
     @Resource
     private ${Domain}Service ${domain}Service;
