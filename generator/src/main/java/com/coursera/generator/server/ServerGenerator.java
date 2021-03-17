@@ -16,7 +16,7 @@ public class ServerGenerator {
     static String toDtoPath = "server//src//main//java//com//coursera//server//dto//";
     static String toServicePath = "server//src//main//java//com//coursera//server//service//";
     static String toControllerPath = MODULE + "//src//main//java//com//coursera//" + MODULE + "//controller//admin//";
-    static String generatorConfigPath = "server\\src\\main\\resources\\generator\\generatorConfig.xml";
+    static String generatorConfigPath = "server//src//main//resources//generator//generatorConfig.xml";
 
     public static void main(String[] args) throws Exception {
 //        String Domain = "Course";
