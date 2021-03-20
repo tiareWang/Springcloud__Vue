@@ -126,7 +126,7 @@
       return {
         section: {},  //section变量用于绑定form表单的数据，save方法
         sections: [],
-        CHARGE: [{key:"C", value:"收费"}, {key:"F", value:"免费"}],
+        CHARGE: CHARGE,
       }
     },
     mounted: function() {
