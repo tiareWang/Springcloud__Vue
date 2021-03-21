@@ -81,7 +81,7 @@
   import Pagination from "../../components/pagination";
   export default {
     components: {Pagination},
-    name: '${domain}',
+    name: '${module}-${domain}',
     data: function() {
       return {
         ${domain}: {},  //${domain}变量用于绑定form表单的数据，save方法
