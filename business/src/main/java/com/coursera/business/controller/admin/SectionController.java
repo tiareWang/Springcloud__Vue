@@ -1,19 +1,15 @@
 package com.coursera.business.controller.admin;
 
-import com.coursera.server.domain.Section;
-import com.coursera.server.util.ValidatorUtil;
-import com.coursera.server.exception.ValidatorException;
-import com.coursera.server.dto.SectionDto;
-import com.coursera.server.dto.PageDto;
 import com.coursera.server.dto.ResponseDto;
+import com.coursera.server.dto.SectionDto;
+import com.coursera.server.dto.SectionPageDto;
 import com.coursera.server.service.SectionService;
+import com.coursera.server.util.ValidatorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.xml.bind.ValidationException;
-import java.util.List;
 
 @RequestMapping("/admin/section")
 @RestController
@@ -29,10 +25,12 @@ public class SectionController {
      * 列表查询
      */
     @PostMapping("/list")   //访问section地址
-    public ResponseDto list(@RequestBody PageDto pageDto) {
+    public ResponseDto list(@RequestBody SectionPageDto sectionPageDto) {
         ResponseDto responseDto = new ResponseDto();
-        sectionService.list(pageDto);
-        responseDto.setContent(pageDto);
+        ValidatorUtil.require(sectionPageDto.getCourseId(), "课程ID");
+        ValidatorUtil.require(sectionPageDto.getChapterId(), "大章ID");
+        sectionService.list(sectionPageDto);
+        responseDto.setContent(sectionPageDto);
         return responseDto;
     }
 
