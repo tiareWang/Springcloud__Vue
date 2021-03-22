@@ -1,13 +1,13 @@
 package com.coursera.server.service;
 
+import com.coursera.server.domain.Teacher;
+import com.coursera.server.domain.TeacherExample;
+import com.coursera.server.dto.PageDto;
+import com.coursera.server.dto.TeacherDto;
+import com.coursera.server.mapper.TeacherMapper;
 import com.coursera.server.util.CopyUtil;
 import com.coursera.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
-import com.coursera.server.domain.Teacher;
-import com.coursera.server.domain.TeacherExample;
-import com.coursera.server.dto.TeacherDto;
-import com.coursera.server.dto.PageDto;
-import com.coursera.server.mapper.TeacherMapper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -20,6 +20,16 @@ public class TeacherService {
 
     @Resource
     private TeacherMapper teacherMapper;
+
+    /**
+     * 列表查询
+     */
+    public List<TeacherDto> all(){
+        TeacherExample teacherExample = new TeacherExample();
+        List<Teacher> teacherList = teacherMapper.selectByExample(teacherExample);
+        List<TeacherDto> teacherDtoList = CopyUtil.copyList(teacherList, TeacherDto.class);
+        return teacherDtoList;
+    }
 
     /**
      * 列表查询
