@@ -368,7 +368,7 @@
        */
       toChapter(course) {
         let _this = this;
-        SessionStorage.set("course", course);  //页面间传输数据可以用sessionStorage
+        SessionStorage.set(SESSION_KEY_COURSE, course);  //页面间传输数据可以用sessionStorage
         _this.$router.push("/business/chapter");
       },
 
