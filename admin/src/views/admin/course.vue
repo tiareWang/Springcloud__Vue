@@ -185,6 +185,7 @@
       add() {
         let _this = this;
         _this.course = {};
+        _this.tree.checkAllNodes(false);
         $("#form-modal").modal("show");
       //  $(".modal").modal({backdrop:"static"});禁止点空白地方关闭，某些场景会用到这个功能
       },
@@ -196,6 +197,7 @@
         let _this = this;
         // _this.course = course;  //这样会让只在对话框修改就更改到列表上，取消键无用
         _this.course = $.extend({}, course);
+        _this.listCategory(course.id);
         $("#form-modal").modal("show");
       },
 
@@ -313,7 +315,32 @@
 
         let zNodes = _this.categorys;
         _this.tree = $.fn.zTree.init($("#tree"), setting, zNodes);
-      }
+
+        // 展开所有的节点
+        // _this.tree.expandAll(true);
+      },
+
+      /**
+       * 查找课程下所有分类
+       * @param courseId
+       */
+      listCategory(courseId) {
+        let _this = this;
+        Loading.show();
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list-category/' + courseId).then((res)=>{
+          Loading.hide();
+          console.log("查找课程下所有分类结果：", res);
+          let response = res.data;
+          let categorys = response.content;
+
+          // 勾选查询到的分类
+          _this.tree.checkAllNodes(false);
+          for (let i = 0; i < categorys.length; i++) {
+            let node = _this.tree.getNodeByParam("id", categorys[i].categoryId);
+            _this.tree.checkNode(node, true);
+          }
+        })
+      },
     }
   }
 </script>

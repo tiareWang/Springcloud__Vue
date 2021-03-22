@@ -1,8 +1,10 @@
 package com.coursera.business.controller.admin;
 
+import com.coursera.server.dto.CourseCategoryDto;
 import com.coursera.server.dto.CourseDto;
 import com.coursera.server.dto.PageDto;
 import com.coursera.server.dto.ResponseDto;
+import com.coursera.server.service.CourseCategoryService;
 import com.coursera.server.service.CourseService;
 import com.coursera.server.util.ValidatorUtil;
 import org.slf4j.Logger;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RequestMapping("/admin/course")
 @RestController
@@ -21,6 +24,9 @@ public class CourseController {
     @Resource
     private CourseService courseService;
 
+    @Resource
+    private CourseCategoryService courseCategoryService;
+
     /**
      * 列表查询
      */
@@ -31,6 +37,19 @@ public class CourseController {
         responseDto.setContent(pageDto);
         return responseDto;
     }
+
+    /**
+     * 查找课程下所有分类
+     * @param courseId
+     */
+    @PostMapping("/list-category/{courseId}")
+    public ResponseDto listCategory(@PathVariable(value = "courseId") String courseId){
+        ResponseDto responseDto = new ResponseDto();
+        List<CourseCategoryDto> dtoList = courseCategoryService.listByCourse(courseId);
+        responseDto.setContent(dtoList);
+        return responseDto;
+    }
+
 
     /**
      * 保存，id有值时更新，无值时新增
