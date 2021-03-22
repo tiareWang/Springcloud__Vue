@@ -1,9 +1,12 @@
 package com.coursera.server.service;
 
 import com.coursera.server.domain.Course;
+import com.coursera.server.domain.CourseContent;
 import com.coursera.server.domain.CourseExample;
+import com.coursera.server.dto.CourseContentDto;
 import com.coursera.server.dto.CourseDto;
 import com.coursera.server.dto.PageDto;
+import com.coursera.server.mapper.CourseContentMapper;
 import com.coursera.server.mapper.CourseMapper;
 import com.coursera.server.mapper.my.MyCourseMapper;
 import com.coursera.server.util.CopyUtil;
@@ -33,6 +36,9 @@ public class CourseService {
 
     @Resource
     private CourseCategoryService courseCategoryService;
+
+    @Resource
+    private CourseContentMapper courseContentMapper;
 
     /**
      * 列表查询
@@ -99,4 +105,29 @@ public class CourseService {
         LOG.info("更新课程时长：{}", courseId);
         myCourseMapper.updateTime(courseId);
     }
+
+    /**
+     * 查找课程内容
+     */
+    public CourseContentDto findContent(String id){
+        CourseContent content = courseContentMapper.selectByPrimaryKey(id);
+        if(content == null){
+            return null;
+        }
+        return CopyUtil.copy(content, CourseContentDto.class);
+    }
+
+    /**
+     * 保存课程内容，包含新增和修改
+     */
+    public int saveContent(CourseContentDto contentDto){
+        CourseContent content = CopyUtil.copy(contentDto, CourseContent.class);
+        int i = courseContentMapper.updateByPrimaryKeyWithBLOBs(content);
+        if(i == 0){
+            i = courseContentMapper.insert(content);
+        }
+        return i;
+    }
+
+
 }

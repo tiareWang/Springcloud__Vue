@@ -1,9 +1,6 @@
 package com.coursera.business.controller.admin;
 
-import com.coursera.server.dto.CourseCategoryDto;
-import com.coursera.server.dto.CourseDto;
-import com.coursera.server.dto.PageDto;
-import com.coursera.server.dto.ResponseDto;
+import com.coursera.server.dto.*;
 import com.coursera.server.service.CourseCategoryService;
 import com.coursera.server.service.CourseService;
 import com.coursera.server.util.ValidatorUtil;
@@ -47,6 +44,21 @@ public class CourseController {
         ResponseDto responseDto = new ResponseDto();
         List<CourseCategoryDto> dtoList = courseCategoryService.listByCourse(courseId);
         responseDto.setContent(dtoList);
+        return responseDto;
+    }
+
+    @GetMapping("/find-content/{id}")
+    public ResponseDto findContent(@PathVariable String id) {
+        ResponseDto responseDto = new ResponseDto();
+        CourseContentDto contentDto = courseService.findContent(id);
+        responseDto.setContent(contentDto);
+        return responseDto;
+    }
+
+    @PostMapping("/save-content")
+    public ResponseDto saveContent(@RequestBody CourseContentDto contentDto) {
+        ResponseDto responseDto = new ResponseDto();
+        courseService.saveContent(contentDto);
         return responseDto;
     }
 
