@@ -126,6 +126,18 @@ create table `course_category` (
     primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='课程分类';
 
+#课程内容
+# 副文本：mediumtext，比text类型长度更长
+# 课程内容一般会有文字，图片，视频，存储内容比较多，所以会用大字段
+# 属于分表，分为垂直（纵向）分表和水平（横向）分表，该表属于垂直分表，把表格纵向切成两张表
+# 垂直分表的场景：大字段，经常需要更新的字段
+drop table if exists `course_content`;
+create table `course_content` (
+    `id` char(8) not null default '' comment '课程id',
+    `content` mediumtext not null comment '课程内容',
+    primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='课程内容';
+
 # ------------ 测试
 drop table if exists `test`;
 create table `test` (
