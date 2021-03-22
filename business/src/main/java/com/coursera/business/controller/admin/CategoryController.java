@@ -1,18 +1,15 @@
 package com.coursera.business.controller.admin;
 
-import com.coursera.server.domain.Category;
-import com.coursera.server.util.ValidatorUtil;
-import com.coursera.server.exception.ValidatorException;
 import com.coursera.server.dto.CategoryDto;
 import com.coursera.server.dto.PageDto;
 import com.coursera.server.dto.ResponseDto;
 import com.coursera.server.service.CategoryService;
+import com.coursera.server.util.ValidatorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @RequestMapping("/admin/category")
@@ -24,6 +21,17 @@ public class CategoryController {
 
     @Resource
     private CategoryService categoryService;
+
+    /**
+     * 列表查询
+     */
+    @PostMapping("/all")   //访问category地址
+    public ResponseDto all() {
+        ResponseDto responseDto = new ResponseDto();
+        List<CategoryDto> categoryDtoList = categoryService.all();
+        responseDto.setContent(categoryDtoList);
+        return responseDto;
+    }
 
     /**
      * 列表查询
