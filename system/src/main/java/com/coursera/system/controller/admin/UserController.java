@@ -1,19 +1,15 @@
 package com.coursera.system.controller.admin;
 
-import com.coursera.server.domain.User;
-import com.coursera.server.util.ValidatorUtil;
-import com.coursera.server.exception.ValidatorException;
-import com.coursera.server.dto.UserDto;
 import com.coursera.server.dto.PageDto;
 import com.coursera.server.dto.ResponseDto;
+import com.coursera.server.dto.UserDto;
 import com.coursera.server.service.UserService;
+import com.coursera.server.util.ValidatorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.xml.bind.ValidationException;
-import java.util.List;
 
 @RequestMapping("/admin/user")
 @RestController

@@ -1,15 +1,18 @@
 package com.coursera.server.service;
 
+import com.coursera.server.domain.User;
+import com.coursera.server.domain.UserExample;
+import com.coursera.server.dto.PageDto;
+import com.coursera.server.dto.UserDto;
+import com.coursera.server.exception.BusinessException;
+import com.coursera.server.exception.BusinessExceptionCode;
+import com.coursera.server.mapper.UserMapper;
 import com.coursera.server.util.CopyUtil;
 import com.coursera.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
-import com.coursera.server.domain.User;
-import com.coursera.server.domain.UserExample;
-import com.coursera.server.dto.UserDto;
-import com.coursera.server.dto.PageDto;
-import com.coursera.server.mapper.UserMapper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -51,6 +54,11 @@ public class UserService {
      */
     private void insert(User user){
         user.setId(UuidUtil.getShortUuid());
+        User userDb = this.selectByLoginName(user.getLoginName());
+        if(userDb != null){
+            throw new BusinessException(BusinessExceptionCode.USER_LOGIN_NAME_EXIST);
+
+        }
         userMapper.insert(user);
     }
 
@@ -66,6 +74,22 @@ public class UserService {
      */
     public void delete(String id){
         userMapper.deleteByPrimaryKey(id);
+    }
 
+    /**
+     * 根据登录名查询用户信息
+     * @param loginName
+     * @return
+     */
+    public User selectByLoginName(String loginName) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andLoginNameEqualTo(loginName);
+        List<User> userList = userMapper.selectByExample(userExample);
+        if(CollectionUtils.isEmpty(userList)) {
+            return null;
+        } else {
+            return userList.get(0);
+            //loginName是唯一的，所以查出来要么没有记录，要么只有一条记录
+        }
     }
 }
