@@ -517,6 +517,8 @@
       $('body').attr('class', 'no-skin');
       //sidebar激活样式方法二
       _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
+
+      $.getScript('/ace/assets/js/ace.min.js');
     },
     watch: {  //用来监视vue上数据的变动（监听）
       //sidebar激活样式方法二
