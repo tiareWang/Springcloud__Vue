@@ -3,7 +3,6 @@ package com.coursera.generator.server;
 import com.coursera.generator.util.DbUtil;
 import com.coursera.generator.util.Field;
 import com.coursera.generator.util.FreemarkerUtil;
-import freemarker.template.TemplateException;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -12,7 +11,7 @@ import java.io.File;
 import java.util.*;
 
 public class ServerGenerator {
-    static String MODULE = "business";
+    static String MODULE = "system";
     static String toDtoPath = "server//src//main//java//com//coursera//server//dto//";
     static String toServicePath = "server//src//main//java//com//coursera//server//service//";
     static String toControllerPath = MODULE + "//src//main//java//com//coursera//" + MODULE + "//controller//admin//";
